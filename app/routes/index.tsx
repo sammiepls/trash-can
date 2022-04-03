@@ -1,11 +1,16 @@
 import { Outlet, Link } from "@remix-run/react";
 import { LinksFunction } from "@remix-run/server-runtime";
+import { useState } from "react";
+
+import { Clowntainer } from "~/components/Clowntainer";
 
 export default function IndexRoute() {
+  const [showClowntainer, setShowClowntainer] = useState(true);
+
   return (
     <div className="h-screen flex flex-col p-4">
       <nav className="order-last flex justify-between text-5xl">
-        <button>🤡</button>
+        <button onClick={() => setShowClowntainer(!showClowntainer)}>🤡</button>
         <button>🔥</button>
       </nav>
       <header>
@@ -22,6 +27,7 @@ export default function IndexRoute() {
           </p>
         </div>
       </main>
+      {showClowntainer && <Clowntainer />}
     </div>
   );
 }
