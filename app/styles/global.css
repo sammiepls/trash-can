@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "Kanit";
+  src: url("/fonts/Kanit-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Kanit";
+  src: url("/fonts/Kanit-ExtraBold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Kanit";
+  min-height: 100vh;
+  min-height: calc(100vh - env(safe-area-inset-bottom));
+  background-image: linear-gradient(
+    50deg,
+    hsl(6deg 77% 66%) 0%,
+    hsl(353deg 74% 69%) 11%,
+    hsl(341deg 65% 69%) 22%,
+    hsl(326deg 50% 68%) 33%,
+    hsl(304deg 32% 66%) 44%,
+    hsl(272deg 33% 69%) 56%,
+    hsl(244deg 32% 71%) 67%,
+    hsl(223deg 33% 69%) 78%,
+    hsl(212deg 30% 67%) 89%,
+    hsl(204deg 23% 66%) 100%
+  );
+  background-repeat: no-repeat;
+}
