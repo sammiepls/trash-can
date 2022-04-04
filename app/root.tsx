@@ -11,6 +11,10 @@ export const links: LinksFunction = () => {
       rel: "stylesheet",
       href: tailwindStylesUrl,
     },
+    {
+      rel: "icon",
+      href: "https://fav.farm/🗑",
+    },
   ];
 };
 
