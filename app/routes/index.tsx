@@ -1,38 +1,43 @@
 import { Outlet, Link } from "@remix-run/react";
-import { LinksFunction } from "@remix-run/server-runtime";
-import { useState } from "react";
+import { LinksFunction, LoaderFunction } from "@remix-run/server-runtime";
+import { useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/node";
+import type { Joke } from "@prisma/client";
 
-import { Clowntainer } from "~/components/Clowntainer";
+import Layout from "~/components/Layout";
+import { db } from "../utils/db.server";
+
+type LoaderData = { jokes: Array<Joke> };
+
+export const loader: LoaderFunction = async () => {
+  const data: LoaderData = {
+    jokes: await db.joke.findMany(),
+  };
+  return json(data);
+};
+
+function pickRandomJoke(jokes: Joke[]) {
+  console.log(jokes);
+  return jokes[Math.round(Math.random() * jokes.length - 1)].id;
+}
 
 export default function IndexRoute() {
-  const [showClowntainer, setShowClowntainer] = useState(true);
-  const [onFire, setOnFire] = useState(true);
+  const data = useLoaderData<LoaderData>();
 
   return (
-    <div className="h-screen flex flex-col p-4">
-      <nav className="order-last flex justify-between text-5xl">
-        <button onClick={() => setShowClowntainer(!showClowntainer)}>🤡</button>
-        <button onClick={() => setOnFire(!onFire)}>🔥</button>
-      </nav>
-      <header>
-        <h1 className="text-white text-center text-5xl mt-10">
-          Trash CAN not Trash cannot
-        </h1>
-      </header>
-      <main className="flex-1 h-screen py-10 flex flex-col">
-        <button className="text-9xl my-10 mx-auto text-center relative">
-          🗑
-          {onFire && <span className="absolute left-0 bottom-8">🔥</span>}
-        </button>
-
-        <div>
-          <p className="text-center text-xl text-gray-300	">
-            Ready for some {onFire ? `HOT` : ``} garbage? <br /> Tap the trash
-            can
-          </p>
-        </div>
-      </main>
-      {showClowntainer && <Clowntainer />}
-    </div>
+    <Layout>
+      <Link
+        to={`joke/${pickRandomJoke(data.jokes)}`}
+        className="text-9xl my-10 mx-auto text-center relative"
+      >
+        🗑
+        {<span className="absolute left-0 bottom-8">🔥</span>}
+      </Link>
+      <div>
+        <p className="text-center text-xl text-gray-300	">
+          Ready for some garbage? <br /> Tap the trash can
+        </p>
+      </div>
+    </Layout>
   );
 }
