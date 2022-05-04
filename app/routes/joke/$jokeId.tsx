@@ -16,7 +16,7 @@ export default function Joke() {
   const { joke } = useLoaderData();
   return (
     <Layout>
-      <div className="bg-white rounded-md p-8 mb-6 relative min-h-20">
+      <div className="bg-white rounded-2xl p-8 mb-6 relative min-h-20 shadow-md">
         {joke.content}
         <span className="speech up-middle" />
       </div>
