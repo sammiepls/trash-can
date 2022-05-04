@@ -30,14 +30,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </h1>
       </header>
       <main className="flex-1 h-screen py-10 flex flex-col">
-        <button
-          onClick={loadRandomJoke}
-          className="text-9xl my-10 mx-auto text-center relative"
-        >
-          🗑
-          {<span className="absolute left-0 bottom-8">🔥</span>}
-        </button>
-        {children}
+        {fetcher.state === "idle" ? (
+          <button
+            onClick={loadRandomJoke}
+            className="text-9xl my-10 mx-auto text-center relative"
+          >
+            🗑
+            {<span className="absolute left-0 bottom-8">🔥</span>}
+          </button>
+        ) : (
+          <div className="text-9xl my-10 mx-auto text-center relative">⏳</div>
+        )}
+        {fetcher.state === "idle" && children}
       </main>
     </div>
   );
