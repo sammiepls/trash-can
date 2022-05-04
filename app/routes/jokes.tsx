@@ -1,14 +1,19 @@
+import { Joke } from "@prisma/client";
+import { json } from "@remix-run/server-runtime";
 import { db } from "../utils/db.server";
 
-type LoaderData = { jokes: Array<Joke> };
+type LoaderData = { joke: Joke };
 
-function pickRandomJoke(jokes: Joke[]) {
-  return jokes[Math.round(Math.random() * jokes.length - 1)].id;
-}
+export async function loader() {
+  const count = await db.joke.count();
+  const randomRowNumber = Math.floor(Math.random() * count);
+  const [randomJoke] = await db.joke.findMany({
+    take: 1,
+    skip: randomRowNumber,
+  });
 
-export async function loader({ params }) {
   const data: LoaderData = {
-    jokes: await db.joke.findMany(),
+    joke: randomJoke,
   };
-  return data;
+  return json(data);
 }
