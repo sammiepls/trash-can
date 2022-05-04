@@ -1,8 +1,8 @@
-import { useLoaderData, useParams } from "@remix-run/react";
-import type { LoaderFunction } from "@remix-run/{runtime}";
+import type { LoaderFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import { db } from "~/utils/db.server";
 
-import Layout from "../../components/Layout";
+import Layout from "~/components/Layout";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const joke = await db.joke.findUnique({
