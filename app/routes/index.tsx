@@ -26,13 +26,13 @@ export default function IndexRoute() {
 
   return (
     <Layout>
-      <Link
+      {/* <Link
         to={`joke/${pickRandomJoke(data.jokes)}`}
         className="text-9xl my-10 mx-auto text-center relative"
       >
         🗑
         {<span className="absolute left-0 bottom-8">🔥</span>}
-      </Link>
+      </Link> */}
       <div>
         <p className="text-center text-xl text-gray-300	">
           Ready for some garbage? <br /> Tap the trash can
