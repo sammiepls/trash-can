@@ -58,12 +58,12 @@ button {
 .speech::after {
   content: "";
   position: absolute;
-  bottom: -1.9rem;
-  left: 0.5rem;
+  bottom: -2rem;
+  left: 1rem;
   background-color: white;
   width: 2rem;
   height: 2rem;
-  clip-path: polygon(50% 40%, 10% 1%, 90% 0%);
+  clip-path: polygon(40% 50%, 0% 0%, 80% 0%);
 }
 
 .speech.up-middle::after {
