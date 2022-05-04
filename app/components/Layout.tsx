@@ -16,7 +16,7 @@ export const loader: LoaderFunction = async () => {
 };
 
 function pickRandomJoke(jokes: Joke[]) {
-  return jokes[Math.round(Math.random() * jokes.length)]?.id;
+  return jokes[Math.floor(Math.random() * jokes.length)]?.id;
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
