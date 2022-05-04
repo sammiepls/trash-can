@@ -14,5 +14,12 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export default function Joke() {
   const { joke } = useLoaderData();
-  return <Layout>{joke.content}</Layout>;
+  return (
+    <Layout>
+      <div className="bg-white rounded-md p-8 mb-6 relative min-h-20">
+        {joke.content}
+        <span className="speech up-middle" />
+      </div>
+    </Layout>
+  );
 }

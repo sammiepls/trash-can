@@ -65,3 +65,11 @@ button {
   height: 2rem;
   clip-path: polygon(50% 40%, 10% 1%, 90% 0%);
 }
+
+.speech.up-middle::after {
+  bottom: 0;
+  top:-1rem;
+  left: 50%;
+  transform:translateX(-50%);
+  clip-path: polygon(0% 50%, 50% 0%, 100% 50%);
+}
