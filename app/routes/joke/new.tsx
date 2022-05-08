@@ -29,10 +29,9 @@ const badRequest = (data: ActionData) => json(data, { status: 400 });
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
   const content = form.get("content");
-  const clown = "Sammie";
   // we do this type check to be extra sure and to make TypeScript happy
   // we'll explore validation next!
-  if (typeof clown !== "string" || typeof content !== "string") {
+  if (typeof content !== "string") {
     return badRequest({
       formError: `Form not submitted correctly.`,
     });
@@ -43,7 +42,7 @@ export const action: ActionFunction = async ({ request }) => {
     content: validateJokeContent(content),
   };
 
-  const fields = { clown, content };
+  const fields = { content };
 
   if (Object.values(fieldErrors).some(Boolean)) {
     return badRequest({ fieldErrors, fields });
