@@ -10,10 +10,20 @@ datasource db {
 
 }
 
+model Clown {
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  name         String   @unique
+  passwordHash String
+  jokes        Joke[]
+}
+
 model Joke {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  clown     String
   content   String
+  Clown     Clown    @relation(fields: [clownId], references: [id], onDelete: Cascade)
+  clownId   String
 }
