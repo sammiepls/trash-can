@@ -19,8 +19,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="h-screen flex flex-col p-4">
       <nav className="order-last flex justify-between text-5xl">
-        <Link to="/joke/new">
-          {/* <Link to="/login"> */}
+        {/* <Link to="/joke/new"> */}
+        <Link to="/login">
           <button>🤡</button>
         </Link>
         <button>🔥</button>
